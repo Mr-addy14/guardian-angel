@@ -114,6 +114,12 @@ function AuthPageContent() {
 
   return (
     <div className="min-h-screen relative flex flex-col items-center justify-center overflow-hidden" style={{ background: "hsl(220 40% 6%)" }}>
+      <div className="video-bg">
+        <video autoPlay muted loop playsInline>
+          <source src="/videos/auth-bg.mp4" type="video/mp4" />
+        </video>
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, hsl(220 45% 5% / 0.85) 0%, hsl(220 50% 8% / 0.75) 50%, hsl(220 45% 5% / 0.9) 100%)', zIndex: 1 }} />
+      </div>
       <div className="auth-grid-bg" />
       <ParticleCanvas />
       <div className="auth-orb auth-orb-1" />

@@ -6,10 +6,13 @@ export function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
       <div className="video-bg">
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, hsl(220 45% 5% / 0.9) 0%, hsl(220 50% 8% / 0.8) 50%, hsl(220 45% 5% / 0.95) 100%)' }} />
+        <video autoPlay muted loop playsInline>
+          <source src="/videos/landing-bg.mp4" type="video/mp4" />
+        </video>
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, hsl(220 45% 5% / 0.85) 0%, hsl(220 50% 8% / 0.7) 50%, hsl(220 45% 5% / 0.9) 100%)', zIndex: 1 }} />
       </div>
 
-      <div className="scan-line z-[1]" />
+      <div className="scan-line z-[2]" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px] pointer-events-none z-[1]" />
       
       <div className="container mx-auto px-6 relative z-10">
@@ -35,7 +38,7 @@ export function Hero() {
             <img 
               src={aegisLogo} 
               alt="AEGIS Shield" 
-              className="h-32 w-auto mx-auto drop-shadow-[0_0_30px_hsl(142_76%_45%/0.4)]"
+              className="h-32 w-auto mx-auto drop-shadow-[0_0_30px_hsl(200_100%_50%/0.4)]"
             />
           </motion.div>
 

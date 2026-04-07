@@ -12,8 +12,22 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as SubscriptionRouteImport } from './routes/subscription'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
+import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
+import { Route as DashboardVaultRouteImport } from './routes/dashboard.vault'
+import { Route as DashboardThreatsRouteImport } from './routes/dashboard.threats'
+import { Route as DashboardSettingsRouteImport } from './routes/dashboard.settings'
+import { Route as DashboardPhishingRouteImport } from './routes/dashboard.phishing'
+import { Route as DashboardNetworkRouteImport } from './routes/dashboard.network'
+import { Route as DashboardHoneypotRouteImport } from './routes/dashboard.honeypot'
+import { Route as DashboardFirewallRouteImport } from './routes/dashboard.firewall'
+import { Route as DashboardEndpointRouteImport } from './routes/dashboard.endpoint'
+import { Route as DashboardEncryptionRouteImport } from './routes/dashboard.encryption'
+import { Route as DashboardDeepfakeRouteImport } from './routes/dashboard.deepfake'
+import { Route as DashboardCopilotRouteImport } from './routes/dashboard.copilot'
+import { Route as DashboardAiAnalyzerRouteImport } from './routes/dashboard.ai-analyzer'
 
 const SubscriptionRoute = SubscriptionRouteImport.update({
   id: '/subscription',
@@ -30,6 +44,11 @@ const OnboardingRoute = OnboardingRouteImport.update({
   path: '/onboarding',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthRoute = AuthRouteImport.update({
   id: '/auth',
   path: '/auth',
@@ -40,13 +59,92 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardIndexRoute = DashboardIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardVaultRoute = DashboardVaultRouteImport.update({
+  id: '/vault',
+  path: '/vault',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardThreatsRoute = DashboardThreatsRouteImport.update({
+  id: '/threats',
+  path: '/threats',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardSettingsRoute = DashboardSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardPhishingRoute = DashboardPhishingRouteImport.update({
+  id: '/phishing',
+  path: '/phishing',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardNetworkRoute = DashboardNetworkRouteImport.update({
+  id: '/network',
+  path: '/network',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardHoneypotRoute = DashboardHoneypotRouteImport.update({
+  id: '/honeypot',
+  path: '/honeypot',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardFirewallRoute = DashboardFirewallRouteImport.update({
+  id: '/firewall',
+  path: '/firewall',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardEndpointRoute = DashboardEndpointRouteImport.update({
+  id: '/endpoint',
+  path: '/endpoint',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardEncryptionRoute = DashboardEncryptionRouteImport.update({
+  id: '/encryption',
+  path: '/encryption',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardDeepfakeRoute = DashboardDeepfakeRouteImport.update({
+  id: '/deepfake',
+  path: '/deepfake',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardCopilotRoute = DashboardCopilotRouteImport.update({
+  id: '/copilot',
+  path: '/copilot',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardAiAnalyzerRoute = DashboardAiAnalyzerRouteImport.update({
+  id: '/ai-analyzer',
+  path: '/ai-analyzer',
+  getParentRoute: () => DashboardRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/dashboard': typeof DashboardRouteWithChildren
   '/onboarding': typeof OnboardingRoute
   '/reset-password': typeof ResetPasswordRoute
   '/subscription': typeof SubscriptionRoute
+  '/dashboard/ai-analyzer': typeof DashboardAiAnalyzerRoute
+  '/dashboard/copilot': typeof DashboardCopilotRoute
+  '/dashboard/deepfake': typeof DashboardDeepfakeRoute
+  '/dashboard/encryption': typeof DashboardEncryptionRoute
+  '/dashboard/endpoint': typeof DashboardEndpointRoute
+  '/dashboard/firewall': typeof DashboardFirewallRoute
+  '/dashboard/honeypot': typeof DashboardHoneypotRoute
+  '/dashboard/network': typeof DashboardNetworkRoute
+  '/dashboard/phishing': typeof DashboardPhishingRoute
+  '/dashboard/settings': typeof DashboardSettingsRoute
+  '/dashboard/threats': typeof DashboardThreatsRoute
+  '/dashboard/vault': typeof DashboardVaultRoute
+  '/dashboard/': typeof DashboardIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,32 +152,111 @@ export interface FileRoutesByTo {
   '/onboarding': typeof OnboardingRoute
   '/reset-password': typeof ResetPasswordRoute
   '/subscription': typeof SubscriptionRoute
+  '/dashboard/ai-analyzer': typeof DashboardAiAnalyzerRoute
+  '/dashboard/copilot': typeof DashboardCopilotRoute
+  '/dashboard/deepfake': typeof DashboardDeepfakeRoute
+  '/dashboard/encryption': typeof DashboardEncryptionRoute
+  '/dashboard/endpoint': typeof DashboardEndpointRoute
+  '/dashboard/firewall': typeof DashboardFirewallRoute
+  '/dashboard/honeypot': typeof DashboardHoneypotRoute
+  '/dashboard/network': typeof DashboardNetworkRoute
+  '/dashboard/phishing': typeof DashboardPhishingRoute
+  '/dashboard/settings': typeof DashboardSettingsRoute
+  '/dashboard/threats': typeof DashboardThreatsRoute
+  '/dashboard/vault': typeof DashboardVaultRoute
+  '/dashboard': typeof DashboardIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/dashboard': typeof DashboardRouteWithChildren
   '/onboarding': typeof OnboardingRoute
   '/reset-password': typeof ResetPasswordRoute
   '/subscription': typeof SubscriptionRoute
+  '/dashboard/ai-analyzer': typeof DashboardAiAnalyzerRoute
+  '/dashboard/copilot': typeof DashboardCopilotRoute
+  '/dashboard/deepfake': typeof DashboardDeepfakeRoute
+  '/dashboard/encryption': typeof DashboardEncryptionRoute
+  '/dashboard/endpoint': typeof DashboardEndpointRoute
+  '/dashboard/firewall': typeof DashboardFirewallRoute
+  '/dashboard/honeypot': typeof DashboardHoneypotRoute
+  '/dashboard/network': typeof DashboardNetworkRoute
+  '/dashboard/phishing': typeof DashboardPhishingRoute
+  '/dashboard/settings': typeof DashboardSettingsRoute
+  '/dashboard/threats': typeof DashboardThreatsRoute
+  '/dashboard/vault': typeof DashboardVaultRoute
+  '/dashboard/': typeof DashboardIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/onboarding' | '/reset-password' | '/subscription'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/dashboard'
+    | '/onboarding'
+    | '/reset-password'
+    | '/subscription'
+    | '/dashboard/ai-analyzer'
+    | '/dashboard/copilot'
+    | '/dashboard/deepfake'
+    | '/dashboard/encryption'
+    | '/dashboard/endpoint'
+    | '/dashboard/firewall'
+    | '/dashboard/honeypot'
+    | '/dashboard/network'
+    | '/dashboard/phishing'
+    | '/dashboard/settings'
+    | '/dashboard/threats'
+    | '/dashboard/vault'
+    | '/dashboard/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/onboarding' | '/reset-password' | '/subscription'
-  id:
-    | '__root__'
+  to:
     | '/'
     | '/auth'
     | '/onboarding'
     | '/reset-password'
     | '/subscription'
+    | '/dashboard/ai-analyzer'
+    | '/dashboard/copilot'
+    | '/dashboard/deepfake'
+    | '/dashboard/encryption'
+    | '/dashboard/endpoint'
+    | '/dashboard/firewall'
+    | '/dashboard/honeypot'
+    | '/dashboard/network'
+    | '/dashboard/phishing'
+    | '/dashboard/settings'
+    | '/dashboard/threats'
+    | '/dashboard/vault'
+    | '/dashboard'
+  id:
+    | '__root__'
+    | '/'
+    | '/auth'
+    | '/dashboard'
+    | '/onboarding'
+    | '/reset-password'
+    | '/subscription'
+    | '/dashboard/ai-analyzer'
+    | '/dashboard/copilot'
+    | '/dashboard/deepfake'
+    | '/dashboard/encryption'
+    | '/dashboard/endpoint'
+    | '/dashboard/firewall'
+    | '/dashboard/honeypot'
+    | '/dashboard/network'
+    | '/dashboard/phishing'
+    | '/dashboard/settings'
+    | '/dashboard/threats'
+    | '/dashboard/vault'
+    | '/dashboard/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthRoute: typeof AuthRoute
+  DashboardRoute: typeof DashboardRouteWithChildren
   OnboardingRoute: typeof OnboardingRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
   SubscriptionRoute: typeof SubscriptionRoute
@@ -108,6 +285,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OnboardingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/auth': {
       id: '/auth'
       path: '/auth'
@@ -122,12 +306,140 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard/': {
+      id: '/dashboard/'
+      path: '/'
+      fullPath: '/dashboard/'
+      preLoaderRoute: typeof DashboardIndexRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/vault': {
+      id: '/dashboard/vault'
+      path: '/vault'
+      fullPath: '/dashboard/vault'
+      preLoaderRoute: typeof DashboardVaultRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/threats': {
+      id: '/dashboard/threats'
+      path: '/threats'
+      fullPath: '/dashboard/threats'
+      preLoaderRoute: typeof DashboardThreatsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/settings': {
+      id: '/dashboard/settings'
+      path: '/settings'
+      fullPath: '/dashboard/settings'
+      preLoaderRoute: typeof DashboardSettingsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/phishing': {
+      id: '/dashboard/phishing'
+      path: '/phishing'
+      fullPath: '/dashboard/phishing'
+      preLoaderRoute: typeof DashboardPhishingRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/network': {
+      id: '/dashboard/network'
+      path: '/network'
+      fullPath: '/dashboard/network'
+      preLoaderRoute: typeof DashboardNetworkRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/honeypot': {
+      id: '/dashboard/honeypot'
+      path: '/honeypot'
+      fullPath: '/dashboard/honeypot'
+      preLoaderRoute: typeof DashboardHoneypotRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/firewall': {
+      id: '/dashboard/firewall'
+      path: '/firewall'
+      fullPath: '/dashboard/firewall'
+      preLoaderRoute: typeof DashboardFirewallRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/endpoint': {
+      id: '/dashboard/endpoint'
+      path: '/endpoint'
+      fullPath: '/dashboard/endpoint'
+      preLoaderRoute: typeof DashboardEndpointRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/encryption': {
+      id: '/dashboard/encryption'
+      path: '/encryption'
+      fullPath: '/dashboard/encryption'
+      preLoaderRoute: typeof DashboardEncryptionRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/deepfake': {
+      id: '/dashboard/deepfake'
+      path: '/deepfake'
+      fullPath: '/dashboard/deepfake'
+      preLoaderRoute: typeof DashboardDeepfakeRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/copilot': {
+      id: '/dashboard/copilot'
+      path: '/copilot'
+      fullPath: '/dashboard/copilot'
+      preLoaderRoute: typeof DashboardCopilotRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/ai-analyzer': {
+      id: '/dashboard/ai-analyzer'
+      path: '/ai-analyzer'
+      fullPath: '/dashboard/ai-analyzer'
+      preLoaderRoute: typeof DashboardAiAnalyzerRouteImport
+      parentRoute: typeof DashboardRoute
+    }
   }
 }
+
+interface DashboardRouteChildren {
+  DashboardAiAnalyzerRoute: typeof DashboardAiAnalyzerRoute
+  DashboardCopilotRoute: typeof DashboardCopilotRoute
+  DashboardDeepfakeRoute: typeof DashboardDeepfakeRoute
+  DashboardEncryptionRoute: typeof DashboardEncryptionRoute
+  DashboardEndpointRoute: typeof DashboardEndpointRoute
+  DashboardFirewallRoute: typeof DashboardFirewallRoute
+  DashboardHoneypotRoute: typeof DashboardHoneypotRoute
+  DashboardNetworkRoute: typeof DashboardNetworkRoute
+  DashboardPhishingRoute: typeof DashboardPhishingRoute
+  DashboardSettingsRoute: typeof DashboardSettingsRoute
+  DashboardThreatsRoute: typeof DashboardThreatsRoute
+  DashboardVaultRoute: typeof DashboardVaultRoute
+  DashboardIndexRoute: typeof DashboardIndexRoute
+}
+
+const DashboardRouteChildren: DashboardRouteChildren = {
+  DashboardAiAnalyzerRoute: DashboardAiAnalyzerRoute,
+  DashboardCopilotRoute: DashboardCopilotRoute,
+  DashboardDeepfakeRoute: DashboardDeepfakeRoute,
+  DashboardEncryptionRoute: DashboardEncryptionRoute,
+  DashboardEndpointRoute: DashboardEndpointRoute,
+  DashboardFirewallRoute: DashboardFirewallRoute,
+  DashboardHoneypotRoute: DashboardHoneypotRoute,
+  DashboardNetworkRoute: DashboardNetworkRoute,
+  DashboardPhishingRoute: DashboardPhishingRoute,
+  DashboardSettingsRoute: DashboardSettingsRoute,
+  DashboardThreatsRoute: DashboardThreatsRoute,
+  DashboardVaultRoute: DashboardVaultRoute,
+  DashboardIndexRoute: DashboardIndexRoute,
+}
+
+const DashboardRouteWithChildren = DashboardRoute._addFileChildren(
+  DashboardRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthRoute: AuthRoute,
+  DashboardRoute: DashboardRouteWithChildren,
   OnboardingRoute: OnboardingRoute,
   ResetPasswordRoute: ResetPasswordRoute,
   SubscriptionRoute: SubscriptionRoute,
