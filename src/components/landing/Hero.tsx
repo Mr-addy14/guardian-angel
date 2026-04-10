@@ -1,27 +1,39 @@
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
 import aegisLogo from "@/assets/aegis-logo-shield.png";
 
 export function Hero() {
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
+
+  const videoY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const logoScale = useTransform(scrollYProgress, [0, 0.5], [1, 0.6]);
+  const logoRotateY = useTransform(scrollYProgress, [0, 1], [0, 20]);
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-      <div className="video-bg">
+    <section ref={ref} className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+      <motion.div className="video-bg" style={{ y: videoY }}>
         <video autoPlay muted loop playsInline>
           <source src="/videos/landing-bg.mp4" type="video/mp4" />
         </video>
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, hsl(220 45% 5% / 0.85) 0%, hsl(220 50% 8% / 0.7) 50%, hsl(220 45% 5% / 0.9) 100%)', zIndex: 1 }} />
-      </div>
+      </motion.div>
 
       <div className="scan-line z-[2]" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px] pointer-events-none z-[1]" />
       
-      <div className="container mx-auto px-6 relative z-10">
+      <motion.div className="container mx-auto px-6 relative z-10" style={{ y: textY, opacity }}>
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/5 mb-8 badge-glow"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full neu-button mb-8 badge-glow"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.97 }}
           >
             <CheckCircle2 className="h-4 w-4 text-primary" />
             <span className="text-sm text-muted-foreground font-body">
@@ -30,10 +42,11 @@ export function Hero() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="mb-8"
+            initial={{ opacity: 0, scale: 0.8, rotateY: -30 }}
+            animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+            transition={{ duration: 1, delay: 0.2, type: "spring" }}
+            className="mb-8 perspective-container"
+            style={{ scale: logoScale, rotateY: logoRotateY }}
           >
             <img 
               src={aegisLogo} 
@@ -79,21 +92,25 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.7 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4"
           >
-            <a
+            <motion.a
               href="/auth"
               className="px-8 py-4 rounded-lg bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-all glow-primary animate-glow-pulse font-display text-sm tracking-wider"
+              whileHover={{ scale: 1.06, rotateZ: -1 }}
+              whileTap={{ scale: 0.95 }}
             >
               Get Started
-            </a>
-            <a
+            </motion.a>
+            <motion.a
               href="#features"
-              className="px-8 py-4 rounded-lg border border-border text-foreground font-medium hover:bg-secondary transition-all font-body"
+              className="px-8 py-4 rounded-lg neu-button text-foreground font-medium font-body"
+              whileHover={{ scale: 1.06, rotateZ: 1 }}
+              whileTap={{ scale: 0.95 }}
             >
               Discover more
-            </a>
+            </motion.a>
           </motion.div>
         </div>
-      </div>
+      </motion.div>
 
       <motion.div
         initial={{ opacity: 0 }}

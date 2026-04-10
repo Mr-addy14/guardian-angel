@@ -355,36 +355,114 @@
 ::-webkit-scrollbar-thumb { background: hsl(225 30% 18%); border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: hsl(200 100% 74% / 0.5); }
 
+/* Neumorphism utilities */
+.neu-card {
+  background: linear-gradient(145deg, hsl(225 38% 16%), hsl(225 42% 10%));
+  box-shadow:
+    8px 8px 20px hsl(225 55% 4% / 0.8),
+    -4px -4px 16px hsl(225 30% 22% / 0.4);
+  border: 1px solid hsl(225 25% 18% / 0.5);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.neu-card:hover {
+  box-shadow:
+    12px 12px 30px hsl(225 55% 4% / 0.9),
+    -6px -6px 20px hsl(225 30% 24% / 0.5),
+    0 0 0 1px hsl(200 100% 74% / 0.2);
+  transform: translateY(-6px);
+}
+
+.neu-inset {
+  background: hsl(225 42% 9%);
+  box-shadow:
+    inset 4px 4px 12px hsl(225 55% 4% / 0.6),
+    inset -2px -2px 8px hsl(225 30% 20% / 0.3);
+  border: 1px solid hsl(225 25% 14%);
+}
+
+.neu-button {
+  background: linear-gradient(145deg, hsl(225 35% 18%), hsl(225 40% 12%));
+  box-shadow:
+    4px 4px 12px hsl(225 55% 4% / 0.6),
+    -2px -2px 8px hsl(225 30% 22% / 0.3);
+  border: 1px solid hsl(225 25% 20% / 0.5);
+  transition: all 0.3s ease;
+}
+
+.neu-button:hover {
+  box-shadow:
+    inset 2px 2px 6px hsl(225 55% 4% / 0.4),
+    inset -1px -1px 4px hsl(225 30% 22% / 0.2);
+}
+
+/* 3D perspective container */
+.perspective-container {
+  perspective: 1200px;
+  transform-style: preserve-3d;
+}
+
+.card-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+}
+
 /* Feature card hover effect */
 .feature-card {
-  transition: all 0.3s ease;
-  background: linear-gradient(180deg, hsl(220 35% 12%) 0%, hsl(220 35% 8%) 100%);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  background: linear-gradient(145deg, hsl(225 38% 14%) 0%, hsl(225 42% 9%) 100%);
+  box-shadow:
+    6px 6px 16px hsl(225 55% 4% / 0.7),
+    -3px -3px 12px hsl(225 30% 20% / 0.3);
 }
 
 .feature-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px hsl(0 0% 0% / 0.3), 0 0 0 1px hsl(200 100% 74% / 0.3);
+  transform: translateY(-8px) rotateX(2deg);
+  box-shadow:
+    10px 14px 30px hsl(225 55% 4% / 0.8),
+    -4px -4px 16px hsl(225 30% 24% / 0.4),
+    0 0 0 1px hsl(200 100% 74% / 0.3);
 }
 
 /* Pricing card */
 .pricing-card {
-  transition: all 0.3s ease;
-  background: linear-gradient(180deg, hsl(220 35% 12%) 0%, hsl(220 35% 8%) 100%);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  background: linear-gradient(145deg, hsl(225 38% 14%) 0%, hsl(225 42% 9%) 100%);
+  box-shadow:
+    6px 6px 16px hsl(225 55% 4% / 0.7),
+    -3px -3px 12px hsl(225 30% 20% / 0.3);
 }
 
 .pricing-card:hover {
-  transform: scale(1.02);
-  box-shadow: 0 0 0 1px hsl(200 100% 74% / 0.5), 0 20px 40px hsl(0 0% 0% / 0.3);
+  transform: scale(1.03) rotateY(2deg);
+  box-shadow:
+    12px 12px 30px hsl(225 55% 4% / 0.9),
+    -6px -6px 20px hsl(225 30% 24% / 0.5),
+    0 0 0 1px hsl(200 100% 74% / 0.4);
 }
 
 .pricing-card.featured {
-  background: linear-gradient(180deg, hsl(220 35% 14%) 0%, hsl(220 35% 10%) 100%);
+  background: linear-gradient(145deg, hsl(225 38% 16%) 0%, hsl(225 42% 11%) 100%);
   border: 1px solid hsl(200 100% 74% / 0.5);
+  box-shadow:
+    8px 8px 20px hsl(225 55% 4% / 0.8),
+    -4px -4px 16px hsl(200 100% 74% / 0.1);
 }
 
 /* Testimonial card */
-.testimonial-card { transition: all 0.3s ease; }
-.testimonial-card:hover { transform: translateY(-4px); }
+.testimonial-card {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow:
+    4px 4px 12px hsl(225 55% 4% / 0.5),
+    -2px -2px 8px hsl(225 30% 20% / 0.2);
+}
+.testimonial-card:hover {
+  transform: translateY(-6px) rotateX(2deg) rotateY(-1deg);
+  box-shadow:
+    8px 12px 24px hsl(225 55% 4% / 0.7),
+    -3px -3px 12px hsl(225 30% 22% / 0.3);
+}
 
 /* Navigation link hover */
 .nav-link { position: relative; }
