@@ -15,9 +15,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => { setScrolled(window.scrollY > 50); };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -33,31 +31,35 @@ export function Navbar() {
     >
       <div className="container mx-auto px-6">
         <div className="flex h-20 items-center justify-between">
-          <a href="#" className="flex items-center gap-3">
+          <motion.a href="#" className="flex items-center gap-3" whileHover={{ scale: 1.05 }}>
             <img src={aegisLogo} alt="AEGIS" className="h-10 w-auto" />
             <span className="text-xl font-display font-bold tracking-widest">A.E.G.I.S</span>
-          </a>
+          </motion.a>
 
-          <nav className="hidden md:flex items-center gap-1 px-2 py-2 rounded-full border border-border bg-background/50 backdrop-blur-sm">
+          <nav className="hidden md:flex items-center gap-1 px-2 py-2 rounded-full neu-inset">
             {navLinks.map((link) => (
-              <a
+              <motion.a
                 key={link.name}
                 href={link.href}
-                className="nav-link px-4 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                className="nav-link px-4 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors rounded-lg"
+                whileHover={{ scale: 1.08, y: -1 }}
+                whileTap={{ scale: 0.95 }}
               >
                 {link.name}
-              </a>
+              </motion.a>
             ))}
           </nav>
 
           <div className="hidden md:flex items-center gap-3">
-            <Link
-              to="/auth"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-border text-sm font-medium hover:bg-secondary/50 transition-all"
-            >
-              <LogIn className="h-4 w-4" />
-              Sign In
-            </Link>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Link
+                to="/auth"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg neu-button text-sm font-medium"
+              >
+                <LogIn className="h-4 w-4" />
+                Sign In
+              </Link>
+            </motion.div>
           </div>
         </div>
       </div>

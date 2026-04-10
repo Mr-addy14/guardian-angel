@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import aegisLogo from "@/assets/aegis-logo-shield.png";
 import { Github, Twitter, Linkedin } from "lucide-react";
 
@@ -14,22 +15,30 @@ export function Footer() {
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-2 md:grid-cols-6 gap-8 mb-12">
           <div className="col-span-2">
-            <a href="#" className="flex items-center gap-3 mb-4">
+            <motion.a href="#" className="flex items-center gap-3 mb-4" whileHover={{ scale: 1.05 }}>
               <img src={aegisLogo} alt="AEGIS" className="h-10 w-auto" />
               <span className="text-xl font-display font-bold tracking-widest">A.E.G.I.S</span>
-            </a>
+            </motion.a>
             <p className="text-sm text-muted-foreground mb-6 max-w-xs">Advanced Engine for Guarding against Intrusions & Scams. AI-powered security for modern teams.</p>
             <div className="flex gap-4">
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors"><Twitter className="h-5 w-5" /></a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors"><Github className="h-5 w-5" /></a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors"><Linkedin className="h-5 w-5" /></a>
+              {[Twitter, Github, Linkedin].map((Icon, i) => (
+                <motion.a key={i} href="#" className="text-muted-foreground hover:text-primary transition-colors" whileHover={{ scale: 1.2, y: -3, rotate: 5 }}>
+                  <Icon className="h-5 w-5" />
+                </motion.a>
+              ))}
             </div>
           </div>
           {Object.entries(footerLinks).map(([category, links]) => (
             <div key={category}>
               <h4 className="font-semibold mb-4 capitalize">{category}</h4>
               <ul className="space-y-3">
-                {links.map((link) => (<li key={link.name}><a href={link.href} className="text-sm text-muted-foreground hover:text-foreground transition-colors">{link.name}</a></li>))}
+                {links.map((link) => (
+                  <li key={link.name}>
+                    <motion.a href={link.href} className="text-sm text-muted-foreground hover:text-foreground transition-colors" whileHover={{ x: 4 }}>
+                      {link.name}
+                    </motion.a>
+                  </li>
+                ))}
               </ul>
             </div>
           ))}
