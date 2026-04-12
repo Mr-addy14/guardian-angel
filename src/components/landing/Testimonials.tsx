@@ -13,15 +13,17 @@ const testimonials = [
 
 function TestimonialCard({ testimonial, index, progress }: { testimonial: typeof testimonials[0]; index: number; progress: any }) {
   const total = testimonials.length;
-  const segmentSize = 1 / total;
-  const start = index * segmentSize;
-  const end = start + segmentSize;
+  const segmentSize = 1 / (total + 1);
+  const enterStart = index * segmentSize;
+  const enterEnd = enterStart + segmentSize * 0.3;
+  const exitStart = (index + 1) * segmentSize - segmentSize * 0.3;
+  const exitEnd = (index + 1) * segmentSize;
 
-  // Each card scales down and rotates away as you scroll past it
-  const y = useTransform(progress, [start, end], [0, -120]);
-  const scale = useTransform(progress, [start, Math.min(end + segmentSize * 0.3, 1)], [1, 0.85]);
-  const rotateX = useTransform(progress, [start, end], [0, -15]);
-  const opacity = useTransform(progress, [start, end, Math.min(end + segmentSize * 0.2, 1)], [1, 1, 0.3]);
+  // Card enters from below, stays, then peels away upward
+  const y = useTransform(progress, [enterStart, enterEnd, exitStart, exitEnd], [200, 0, 0, -300]);
+  const scale = useTransform(progress, [enterStart, enterEnd, exitStart, exitEnd], [0.8, 1, 1, 0.7]);
+  const rotateX = useTransform(progress, [enterStart, enterEnd, exitStart, exitEnd], [15, 0, 0, -25]);
+  const opacity = useTransform(progress, [enterStart, enterEnd, exitStart, exitEnd], [0, 1, 1, 0]);
 
   return (
     <motion.div
